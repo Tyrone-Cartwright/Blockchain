@@ -36,19 +36,19 @@ def use_id():
     file = pathlib.Path('my_id.txt')
     if file.exists():
         f = open('my_id.txt', "r")
-        contents = f.read()
+        info = f.read()
         f.close()
-        return contents
+        return info
     else:
         f = open('my_id.txt', "w+")
         line = str(uuid4())
-        line = ''.join(c for c in line if c not in '-')
+        line = ''.join(k for k in line if k not in '-')
         f.write(line)
         f.close()
         f = open('my_id.txt', 'r')
-        contents = f.read()
+        info = f.read()
         f.close()
-        return contents
+        return info
 
 
 if __name__ == '__main__':
