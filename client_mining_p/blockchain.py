@@ -3,7 +3,8 @@ import json
 from time import time
 from uuid import uuid4
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request  # pylint: disable=F0401
+
 
 import sys
 
@@ -194,6 +195,13 @@ def full_chain():
         'length': len(blockchain.chain),
     }
     return jsonify(response), 200
+
+
+@app.route('/last_proof', methods=['GET'])
+def last_proof():
+    return jsonify({
+        'proof': blockchain.last_block.get('proof')
+    }), 200
 
 
 # Note, when demoing, start with this, then change to the below
